@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 
 const useFetch = url => {
   const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(null);
-  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     let urlType = typeof url;
@@ -14,12 +14,15 @@ const useFetch = url => {
 
     const fetchData = async () => {
       try {
-        setIsLoading(true);
-        const fetchData = await (await fetch(url)).json();
-        setData(fetchData);
+        const response = await fetch(url);
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error('😱 Something went wrong with fetching data!');
+        }
+        setData(data);
         setIsLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error.message);
         setIsLoading(false);
       }
     };
