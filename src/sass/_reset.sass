@@ -1,5 +1,10 @@
 @use './vars' as *
 
+*, 
+*::after,
+*::before 
+    box-sizing: border-box
+
 body
     margin: 0
     padding: $gutter
@@ -12,3 +17,18 @@ body
 a
     color: inherit
     text-decoration: inherit
+
+button
+    border: none
+    margin: 0
+    padding: 0
+    width: auto
+    overflow: visible
+    background: transparent
+    color: inherit
+    font: inherit
+    -webkit-font-smoothing: inherit
+    -moz-osx-font-smoothing: inherit
+    -webkit-appearance: none
+    &:hover
+        cursor: pointer

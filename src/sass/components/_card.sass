@@ -8,6 +8,11 @@ $cardGutterX: $gutter
     display: flex
     border-radius: $radius
     transition: $transition
+    &__placeholder
+        width: 100px
+        height: 100px
+        background-color: $shade
+        border-radius: $radius
     &__image
         display: block
         width: 100px
@@ -42,5 +47,3 @@ $cardGutterX: $gutter
         visibility: hidden
         transition: $transition
         z-index: 1
-    &:hover
-        background-color: $shade
