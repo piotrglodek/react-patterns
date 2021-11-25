@@ -2,9 +2,9 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 import '../../../sass/components/_cardList.sass';
 
-const CardList = ({ characters }) => (
+const CardList = ({ data }) => (
   <div className='card-list'>
-    {characters.map(character => (
+    {data.results.map(character => (
       <Card
         key={character.id}
         name={character.name}
@@ -21,22 +21,28 @@ const baseShape = PropTypes.shape({
 });
 
 CardList.propTypes = {
-  characters: PropTypes.arrayOf(
+  info: PropTypes.shape({
+    count: PropTypes.number,
+    next: PropTypes.string,
+    pages: PropTypes.number,
+    prev: PropTypes.any,
+  }),
+  results: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      species: PropTypes.string.isRequired,
-      type: PropTypes.string.isRequired,
-      gender: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-      created: PropTypes.string.isRequired,
-      origin: baseShape.isRequired,
-      location: baseShape.isRequired,
-      episode: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    }).isRequired
-  ).isRequired,
+      id: PropTypes.number,
+      name: PropTypes.string,
+      status: PropTypes.string,
+      species: PropTypes.string,
+      type: PropTypes.string,
+      gender: PropTypes.string,
+      image: PropTypes.string,
+      url: PropTypes.string,
+      created: PropTypes.string,
+      origin: baseShape,
+      location: baseShape,
+      episode: PropTypes.arrayOf(PropTypes.string),
+    })
+  ),
 };
 
 export default CardList;
